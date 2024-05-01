@@ -26,15 +26,15 @@ app.use(cors());
 
 app.use(router)
 app.use("/uploads",express.static('uploads'))
-
+const port = process.env.PORT || 4000;
 async function startServer() {
     await server.start(); 
     server.applyMiddleware({ app }); 
     mongoose.connect(MongoDB, { useNewUrlParser: true})
         .then(() => {
             console.log('Connected');
-            return app.listen({ port: 8080 }, () => {
-                console.log("http://localhost:8080"+server.graphqlPath);
+            return app.listen({ port: port }, () => {
+                console.log("http://localhost:"+port+server.graphqlPath);
             });
         })
         .catch((err) => {
