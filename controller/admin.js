@@ -37,17 +37,5 @@ const postNewDish = async (req, res) => {
         res.status(500).json({ message: err.message });
     }
 };
-// const getDishID = async (req,res)=>{
-//     const restaurant = await Restaurant.findById(req.body.idRes);
-//     if (!restaurant) {
-//         return res.status(404).json({ message: "Restaurant not found" });
-//     }
-//     const menuIndex = restaurant.menu.findIndex(menu => menu._id.toString() === req.body.idMenu);
-//     if (menuIndex === -1) {
-//         return res.status(404).json({ message: "Menu not found" });
-//     }
-//     const dishIndex = restaurant.menu.dish.findIndex(dish => dish._id.toString() === req.body.idDish);
-    
-//     res.status(200).json({ message: "Add new dish successfully!",data:  restaurant.menu.dish[dishIndex]});
-// }
+
 module.exports = {postRestaurant,postNewDish};

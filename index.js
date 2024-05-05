@@ -15,7 +15,7 @@ const typeDefs = require('./graphql/typeDefs');
 const resolvers = require('./graphql/resolvers');
 //post image
 const router = require('./routes/admin');
-
+const routerUser = require('./routes/User')
 const server = new ApolloServer({
     typeDefs,
     resolvers
@@ -23,9 +23,13 @@ const server = new ApolloServer({
 
 const cors = require('cors');
 app.use(cors());
+//routes
+app.use(router);
+app.use(routerUser);
+app.use("/uploads",express.static('uploads'));
 
-app.use(router)
-app.use("/uploads",express.static('uploads'))
+
+
 const port = process.env.PORT || 4000;
 async function startServer() {
     await server.start(); 
