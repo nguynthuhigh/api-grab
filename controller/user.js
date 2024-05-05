@@ -43,16 +43,14 @@ const Login = async (req,res)=>{
     }
 }
 
-const authUser = (req, res) => {
+const authUser =async (req, res) => {
     const token = req.headers.authorization?.slice(7);
     if (token) {
         jwt.verify(token, process.env.JWT_PRIVATE_KEY, (err, decoded) => {
             if (err) {
                 res.status(401).json({ message: 'Unauthorized' });
             } else {
-                console.log('Decoded JWT:', decoded);
-                const user = User.findOne({_id:decoded.id})
-                res.status(200).json({ user });
+                res.status(200).json({ id: decoded.id });
             }
         });
     } else {
